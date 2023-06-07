@@ -1,22 +1,33 @@
-import React from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View, Text, ScrollView, RefreshControl } from "react-native";
 
 export default function App() {
   const obj = [
     { id: "1", name: "Stan", age: 45 },
     { id: "2", name: "Francine", age: 45 },
-    { id: "3", name: "hayley", age: 18 },
+    { id: "3", name: "Hayley", age: 18 },
     { id: "4", name: "Steve", age: 14 },
     { id: "5", name: "Roger", age: 1020 },
     { id: "6", name: "Klaus", age: 30 },
+    { id: "7", name: "Klaus", age: 30 },
+    { id: "8", name: "Klaus", age: 30 },
+    { id: "9", name: "Klaus", age: 30 },
+    { id: "10", name: "Klaus", age: 30 },
+    { id: "11", name: "Klaus", age: 30 },
   ];
+
+  const [isrefreshing, setIsrefreshing] = useState(false);
+
+  const updateRefresh = () => (obj ? setIsrefreshing(false) : isrefreshing);
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView
+        refreshControl={<RefreshControl refreshing={isrefreshing} onRefresh={updateRefresh} />}
+      >
         {obj.map((character) => {
           return (
-            <View style={styles.charElement}>
+            <View style={styles.charElement} key={character.id}>
               <View>
                 <Text style={styles.text}>Nom: {character.name}</Text>
               </View>
@@ -36,9 +47,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    flex: 1,
-    gap: 15,
-    flexGrow: 1,
+    marginTop: 60,
   },
   charElement: {
     backgroundColor: "skyblue",
@@ -47,11 +56,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    margin: 15,
   },
   text: {
     color: "white",
     fontWeight: "600",
     fontSize: 25,
-    padding: 70,
+    padding: 10,
   },
 });
