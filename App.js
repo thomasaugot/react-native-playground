@@ -33,8 +33,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
+    justifyContent: "flex-end",
+    flex: 1,
     gap: 15,
-    marginTop: 60,
   },
   charElement: {
     padding: 10,
