@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
 
 export default function App() {
   const obj = [
@@ -13,19 +13,21 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {obj.map((character) => {
-        return (
-          <View style={styles.charElement}>
-            <View>
-              <Text style={styles.text}>Nom: {character.name}</Text>
+      <ScrollView>
+        {obj.map((character) => {
+          return (
+            <View style={styles.charElement}>
+              <View>
+                <Text style={styles.text}>Nom: {character.name}</Text>
+              </View>
+              <Text style={styles.text}>|</Text>
+              <View>
+                <Text style={styles.text}>Age: {character.age}</Text>
+              </View>
             </View>
-            <Text style={styles.text}>|</Text>
-            <View>
-              <Text style={styles.text}>Age: {character.age}</Text>
-            </View>
-          </View>
-        );
-      })}
+          );
+        })}
+      </ScrollView>
     </View>
   );
 }
@@ -33,22 +35,23 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    justifyContent: "flex-end",
+    justifyContent: "center",
     flex: 1,
     gap: 15,
+    flexGrow: 1,
   },
   charElement: {
-    padding: 10,
     backgroundColor: "skyblue",
     width: "90%",
     display: "flex",
     flexDirection: "row",
-    gap: 10,
+    alignItems: "center",
     justifyContent: "center",
   },
   text: {
     color: "white",
     fontWeight: "600",
-    fontSize: 20,
+    fontSize: 25,
+    padding: 70,
   },
 });
