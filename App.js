@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, ScrollView, RefreshControl } from "react-native";
+import { StyleSheet, View, Text, FlatList, RefreshControl } from "react-native";
 
 export default function App() {
   const obj = [
@@ -22,10 +22,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <ScrollView
-        refreshControl={<RefreshControl refreshing={isrefreshing} onRefresh={updateRefresh} />}
-      >
-        {obj.map((character) => {
+      <FlatList
+        data={obj}
+        renderItem={(character) => {
           return (
             <View style={styles.charElement} key={character.id}>
               <View>
@@ -37,8 +36,8 @@ export default function App() {
               </View>
             </View>
           );
-        })}
-      </ScrollView>
+        }}
+      />
     </View>
   );
 }
